@@ -19,20 +19,43 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  filter: blur(.5px);
+  filter: blur(0.15rem);
   font-family: 'Volkhov', serif;
+  text-align: center;
+  font-size: 3rem;
 }
 
 h1 {
   color: white;
   text-shadow: 0 0 1.05px black;
 }
+
+#countdown {
+}
     </style>
   </head>
 
   <body>
-    <div id="oh-yeah">
+    <div>
       <h1>OH YEAH</h1>
+      <p id="countdown">~</p>
     </div>
+    <script>
+const due = new Date(Date.UTC(2020, 8, 1, 22));
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const countdown = document.getElementById('countdown');
+
+  const formattedDue = due.toLocaleString("en-US", {timeZone: "America/New_York"});
+
+  const msLeft = Math.abs(due - new Date());
+  const hoursLeft = Math.floor(((msLeft/1000)/60)/60);
+
+  const updateCountdown = () => countdown.innerHTML = `${hoursLeft} hours left until ${formattedDue} Big Apple Time`;
+  updateCountdown();
+
+  setInterval(updateCountdown, 1000);
+});
+    </script>
   </body>
 </html>
