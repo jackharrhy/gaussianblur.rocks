@@ -15,14 +15,50 @@ html, body {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
-  filter: blur(0.125rem);
   font-family: 'Volkhov', serif;
   text-align: center;
   font-size: 3.25rem;
+  background-color: black;
+}
+
+#logo-container img {
+  margin: 4rem 0;
+  max-width: min(90vw, 90vh);
+}
+
+#logo-container, #audio-container, #video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#logo-container {
+  height: min(50vw, 50vh);
+}
+
+#audio-container {
+  height: min(30vw, 30vh);
+}
+
+#audio-container img {
+  max-width: min(70vw, 70vh);
+  margin-bottom: 2rem;
+}
+
+#audio-container audio {
+  border: 2px solid rgba(1,1,1,0.5);
+  background-color: white;
+}
+
+#video-container {
+  height: 100vh;
+}
+
+#video-container video {
+  height: 80%;
+  width: 80%;
 }
 
 h1, p {
@@ -33,26 +69,17 @@ h1, p {
   </head>
 
   <body>
-    <div>
-      <h1>OH YEAH</h1>
-      <p id="countdown">~</p>
+    <div id="logo-container">
+      <img src="./logo-white.png" />
     </div>
-    <script>
-const due = new Date(Date.UTC(2020, 8, 1, 22));
-
-window.addEventListener('DOMContentLoaded', (event) => {
-  const countdown = document.getElementById('countdown');
-
-  const formattedDue = due.toLocaleString("en-US", {timeZone: "America/New_York"});
-
-  const msLeft = Math.abs(due - new Date());
-  const hoursLeft = Math.floor(((msLeft/1000)/60)/60);
-
-  const updateCountdown = () => countdown.innerHTML = `${hoursLeft} hours left until ${formattedDue} Big Apple Time`;
-  updateCountdown();
-
-  setInterval(updateCountdown, 1000);
-});
-    </script>
+    <div id="audio-container">
+      <a href="https://www.cs.mun.ca/~jaharrhy/audios/gaussian-blur-ticket-to-ride.wav" download>
+        <img src="./ttr-white.png" />
+      </a>
+      <audio controls src="https://www.cs.mun.ca/~jaharrhy/audios/gaussian-blur-ticket-to-ride.wav" />
+    </div>
+    <div id="video-container">
+      <video controls src="https://www.cs.mun.ca/~jaharrhy/videos/gaussian-blur-time-to-ride.mp4" />
+    </div>
   </body>
 </html>
